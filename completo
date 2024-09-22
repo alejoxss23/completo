@@ -1,0 +1,66 @@
+import discord
+from discord.ext import commands
+
+
+#variable intents almacena los privilegios del bot
+intents = discord.Intents.default()
+#activa el privilegio de lectura de los mensajes
+intents.message_content = True
+# Definicion del prefijo para el comando del bot
+client = commands.Bot(command_prefix="$", intents=intents)
+
+# Evento cuando el bot está listo
+@client.event
+async def on_ready():
+    print(f"Iniciamos sesion como {client.user}")
+
+# Comando para obtener información sobre la contaminación un resumen
+@client.command(name="contaminacion", help="Dame información sobre la contaminación")
+async def contaminacion(ctx):
+    response = (
+        "La contaminación es la introducción de sustancias o agentes contaminantes en el medio ambiente, "
+        "que pueden causar efectos adversos en la salud humana y en los ecosistemas. Los principales tipos de "
+        "contaminación incluyen la contaminación del aire, del agua y del suelo. "
+        "Para reducir la contaminación, es importante adoptar prácticas sostenibles como reducir el uso de plásticos o "
+        "el uso de vehículos electonicos y promover el reciclaje."
+    )
+    await ctx.send(response)
+
+# Comando para obtener información sobre la contaminación del aire un resumen
+@client.command(name="contaminacion_aire", help="Dame información sobre la contaminación del aire")
+async def contaminacion_aire(ctx):
+    response = (
+        "La contaminación del aire ocurre cuando sustancias nocivas, como gases y partículas, se introducen en la atmósfera. "
+        "Esto puede causar problemas de salud como enfermedades respiratorias y cardiovasculares, así como dañar el medio ambiente. "
+        "Principales contaminantes del aire incluyen el dióxido de azufre (SO2), el monóxido de carbono (CO), los óxidos de nitrógeno (NOx) y las partículas en suspensión (PM10 y PM2.5)."
+    )
+    await ctx.send(response)
+
+# Comando para obtener información sobre la contaminación del agua un resumen
+@client.command(name="contaminacion_agua", help="Dame información sobre la contaminación del agua")
+async def contaminacion_agua(ctx):
+    response = (
+        "La contaminación del agua ocurre cuando sustancias dañinas se introducen en fuentes de agua como ríos, lagos y océanos. "
+        "Esto puede resultar de desechos industriales, productos químicos, fertilizantes y desechos humanos. "
+        "La contaminación del agua puede afectar la vida acuática, hacer que el agua sea insegura para el consumo humano y dañar los ecosistemas acuáticos."
+    )
+    await ctx.send(response)
+
+# Comando para obtener información sobre la contaminación del suelo un resumen
+@client.command(name="contaminacion_suelo", help="Dame información sobre la contaminación del suelo")
+async def contaminacion_suelo(ctx):
+    response = (
+        "La contaminación del suelo ocurre cuando hay sustancias tóxicas, como pesticidas, productos químicos industriales o desechos sólidos, "
+        "se depositan en la tierra. Esto puede afectar la salud de las plantas, animales y seres humanos al contaminar los cultivos y el agua subterránea."
+    )
+    await ctx.send(response)
+  
+@client.command()
+async def mem(ctx):
+    with open('images/meme.jpg', 'rb') as f:
+        # ¡Vamos a almacenar el archivo de la biblioteca Discord convertido en esta variable!
+        picture = discord.File(f)
+    # A continuación, podemos enviar este archivo como parámetro.
+    await ctx.send(file=picture)
+
+client.run("MTI3ODE1ODUzMzEzNjc0ODU2NA.Gw38Rx.cFllYGGVppCDDjAbTDxA2YmJOuoZgbnm_LlsMc")
